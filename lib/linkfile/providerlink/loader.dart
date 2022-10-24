@@ -221,7 +221,6 @@ class choosefrequency with ChangeNotifier {
   }
 }
 
-
 class checkstate with ChangeNotifier {
   bool _value = true;
 
@@ -283,6 +282,11 @@ class checklogged with ChangeNotifier {
     _token = token;
     _savetopref();
     notifyListeners();
+  }
+
+  deletelogged() async {
+    final _pref = await SharedPreferences.getInstance();
+    _pref.remove('showloggedprovider');
   }
 
   _savetopref() async {

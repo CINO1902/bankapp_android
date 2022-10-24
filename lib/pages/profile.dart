@@ -1,7 +1,7 @@
+import 'package:bankapp/linkfile/providerlink/loader.dart';
 import 'package:bankapp/linkfile/providerlink/theme_provider.dart';
 import 'package:bankapp/linkfile/services.dart';
 import 'package:flutter/material.dart';
-
 
 import 'package:flutter_svg/svg.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -16,8 +16,6 @@ class Profile extends StatefulWidget {
 }
 
 class _ProfileState extends State<Profile> {
- 
-
   @override
   Widget build(BuildContext context) {
     final getdetail = Provider.of<getdetails>(context, listen: true);
@@ -335,8 +333,7 @@ class _ProfileState extends State<Profile> {
                     onTap: () async {
                       Navigator.pushNamedAndRemoveUntil(
                           context, '/login', (route) => false);
-                      final prefs = await SharedPreferences.getInstance();
-                      prefs.remove('token');
+                      context.read<checklogged>().deletelogged();
                     },
                     child: Container(
                       height: MediaQuery.of(context).size.height * 0.09,
